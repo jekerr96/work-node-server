@@ -6,7 +6,9 @@ async function clearCache(query) {
         const {stdout} = await exec('cd ~/../../samba/programmer/projects-svn/' + query.project + '/trunk/www/bitrix/ && rm -rf cache managed_cache stack_cache');
 
         return stdout;
-    } catch (e) {}
+    } catch (e) {
+        console.log(e.message);
+    }
 
     return "";
 }
