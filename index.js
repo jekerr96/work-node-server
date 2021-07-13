@@ -11,7 +11,7 @@ const server = http.createServer(async (req, res) => {
         await sendSshList();
         res.writeHead(200, {'Content-type':'text/plain'});
         res.end();
-    } else if (parseUrl.pathname === 'clear-cache') {
+    } else if (parseUrl.pathname === '/clear-cache/') {
         await clearCache(parseUrl.query);
         res.writeHead(200, {'Content-type':'text/plain'});
         res.end();
