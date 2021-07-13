@@ -1,6 +1,7 @@
 const http = require("http");
 const url = require("url");
 const {sendSshList} = require("./app/ssh");
+const {clearCache} = require("./app/clear-cache");
 const port = 4455;
 
 const server = http.createServer(async (req, res) => {
@@ -8,6 +9,10 @@ const server = http.createServer(async (req, res) => {
 
     if (parseUrl.pathname === '/ssh/') {
         await sendSshList();
+        res.writeHead(200, {'Content-type':'text/plain'});
+        res.end();
+    } else if (parseUrl.pathname === 'clear-cache') {
+        await clearCache(parseUrl.query);
         res.writeHead(200, {'Content-type':'text/plain'});
         res.end();
     } else {
